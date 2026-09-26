@@ -65,7 +65,9 @@ setInterval(() => {
   if (cd) cd.textContent = m + ':' + s;
 }, 1000);
 
-// ---------- Booking form (demo submit) ----------
+// ---------- Booking form -> Google Sheet (Apps Script web app) ----------
+// Paste your deployed Web app URL here (see apps-script/Code.gs)
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxgVjQ2qaPP7m-moGnb9eQfztKJoxe0qn0oSpDwFA5zTq6BR9e5g9rDBp8-6-A5j8k/exec';
 const form = document.getElementById('bookingForm');
 if (form) {
   form.addEventListener('submit', e => {
@@ -83,9 +85,33 @@ if (form) {
       return;
     }
 
-    // TODO: replace with your real endpoint / Google Form / WhatsApp API
-    document.getElementById('formSuccess').hidden = false;
-    form.reset();
+    const btn = form.querySelector('button[type="submit"]');
+    const label = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+
+    // no-cors: the Apps Script web app can't send CORS headers, so the response is opaque
+    fetch(SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({
+        name,
+        phone,
+        condition,
+        time: form.time.value,
+        page: location.href
+      })
+    })
+      .then(() => {
+        document.getElementById('formSuccess').hidden = false;
+        form.reset();
+      })
+      .catch(() => alert('Could not send your request. Please call us instead.'))
+      .finally(() => {
+        btn.disabled = false;
+        btn.textContent = label;
+      });
   });
 }
 

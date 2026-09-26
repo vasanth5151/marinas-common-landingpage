@@ -191,6 +191,8 @@ h1 em,h2 em{font-style:italic;color:var(--teal)}
 .surgeon-stats span{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#bde4e0}
 .surgeon-card{background:#fff;border-radius:var(--radius);padding:20px;text-align:center;color:var(--ink);box-shadow:var(--shadow);display:flex;flex-direction:column;gap:6px}
 .surgeon-photo{aspect-ratio:4/4.4;border-radius:12px;background:linear-gradient(160deg,#e9d8c8,#d4b9a1);display:grid;place-items:center;color:#7d5a40;font-weight:500;margin-bottom:8px}
+.surgeon-photo{overflow:hidden}
+.surgeon-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
 .surgeon-card b{font-family:var(--font-display);font-size:18px;color:var(--deep)}
 .surgeon-card span{font-size:12.5px;color:var(--ink-soft)}
 @media(max-width:860px){.surgeon-grid{grid-template-columns:1fr}.surgeon-stats{grid-template-columns:repeat(2,1fr)}}
