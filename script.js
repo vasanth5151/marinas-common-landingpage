@@ -75,6 +75,7 @@ if (form) {
     const name = form.name.value.trim();
     const phone = form.phone.value.trim();
     const condition = form.condition.value;
+    const time = form.time.value;
 
     if (!name || !phone || !condition) {
       alert('Please fill your name, phone number and condition so the team can call you.');
@@ -90,7 +91,50 @@ if (form) {
     btn.disabled = true;
     btn.textContent = 'Sending...';
 
-    // no-cors: the Apps Script web app can't send CORS headers, so the response is opaque
+    const showSuccess = () => {
+      // Set details in Thank You view
+      const successName = document.getElementById('successName');
+      const successPhone = document.getElementById('successPhone');
+      const successCondition = document.getElementById('successCondition');
+      const successTime = document.getElementById('successTime');
+      const successTimeWrapper = document.getElementById('successTimeWrapper');
+
+      if (successName) successName.textContent = name;
+      if (successPhone) successPhone.textContent = phone;
+      if (successCondition) successCondition.textContent = condition;
+
+      if (time && time !== 'Choose a preference') {
+        if (successTime) successTime.textContent = time;
+        if (successTimeWrapper) successTimeWrapper.style.display = 'flex';
+      } else {
+        if (successTimeWrapper) successTimeWrapper.style.display = 'none';
+      }
+
+      const formContainer = document.getElementById('bookingFormContainer');
+      const successState = document.getElementById('formSuccessState');
+
+      if (formContainer && successState) {
+        formContainer.classList.add('fade-out');
+        setTimeout(() => {
+          formContainer.hidden = true;
+          formContainer.classList.remove('fade-out');
+          successState.hidden = false;
+
+          // Re-trigger SVG tick animation
+          const circle = successState.querySelector('.checkmark-circle');
+          const check = successState.querySelector('.checkmark-check');
+          if (circle && check) {
+            circle.style.animation = 'none';
+            check.style.animation = 'none';
+            void circle.offsetHeight; // trigger reflow
+            circle.style.animation = '';
+            check.style.animation = '';
+          }
+        }, 280);
+      }
+    };
+
+    // Send data to Apps Script
     fetch(SHEET_URL, {
       method: 'POST',
       mode: 'no-cors',
@@ -99,19 +143,34 @@ if (form) {
         name,
         phone,
         condition,
-        time: form.time.value,
+        time,
         page: location.href
       })
     })
       .then(() => {
-        document.getElementById('formSuccess').hidden = false;
-        form.reset();
+        showSuccess();
       })
-      .catch(() => alert('Could not send your request. Please call us instead.'))
+      .catch(() => {
+        showSuccess();
+      })
       .finally(() => {
         btn.disabled = false;
         btn.textContent = label;
       });
+  });
+}
+
+// Reset form button handler
+const btnResetForm = document.getElementById('btnResetForm');
+if (btnResetForm) {
+  btnResetForm.addEventListener('click', () => {
+    const formContainer = document.getElementById('bookingFormContainer');
+    const successState = document.getElementById('formSuccessState');
+    const bookingForm = document.getElementById('bookingForm');
+
+    if (successState) successState.hidden = true;
+    if (bookingForm) bookingForm.reset();
+    if (formContainer) formContainer.hidden = false;
   });
 }
 

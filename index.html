@@ -350,43 +350,88 @@
       </div>
     </div>
     <div class="booking-card reveal">
-      <h3>Request your slot</h3>
-      <p class="form-sub">Have less than a minute.</p>
-      <form id="bookingForm" novalidate>
-        <label>Full name
-          <input type="text" name="name" placeholder="Your name" required>
-        </label>
-        <label>Phone number
-          <input type="tel" name="phone" placeholder="10-digit mobile number" required>
-        </label>
-        <label>What is bothering you?
-          <select name="condition" required>
-            <option value="">Select a condition</option>
-            <option>Hernia / Diastasis Recti</option>
-            <option>Bariatric / Weight-loss Surgery</option>
-            <option>Gallbladder Stones</option>
-            <option>Acid Reflux / GERD</option>
-            <option>Appendicitis</option>
-            <option>Piles / Fissure / Fistula</option>
-            <option>Laser Treatment</option>
-            <option>Something else / not sure</option>
-          </select>
-        </label>
-        <label>Preferred time
-          <select name="time">
-            <option>Choose a preference</option>
-            <option>Morning</option>
-            <option>Evening (6:00 – 7:00 PM)</option>
-            <option>Any time works</option>
-          </select>
-        </label>
-        <p class="form-fine">Anything you'd like us to add anything else. Your details stay private and are used only to arrange your consultation.</p>
-        <button type="submit" class="btn btn-teal btn-block">Request my consultation</button>
-        <div class="form-success" id="formSuccess" hidden>✓ Request received. The team will call you shortly to confirm your slot.</div>
-      </form>
-      <div class="alt-actions">
-        <a class="btn btn-outline btn-half" href="#" rel="noopener">💬 WhatsApp us</a>
-        <a class="btn btn-outline btn-half" href="tel:+919884000171">📞 Call now</a>
+      <div id="bookingFormContainer">
+        <h3>Request your slot</h3>
+        <p class="form-sub">Have less than a minute.</p>
+        <form id="bookingForm" novalidate>
+          <label>Full name
+            <input type="text" name="name" placeholder="Your name" required>
+          </label>
+          <label>Phone number
+            <input type="tel" name="phone" placeholder="10-digit mobile number" required>
+          </label>
+          <label>What is bothering you?
+            <select name="condition" required>
+              <option value="">Select a condition</option>
+              <option>Hernia / Diastasis Recti</option>
+              <option>Bariatric / Weight-loss Surgery</option>
+              <option>Gallbladder Stones</option>
+              <option>Acid Reflux / GERD</option>
+              <option>Appendicitis</option>
+              <option>Piles / Fissure / Fistula</option>
+              <option>Laser Treatment</option>
+              <option>Something else / not sure</option>
+            </select>
+          </label>
+          <label>Preferred time
+            <select name="time">
+              <option>Choose a preference</option>
+              <option>Morning</option>
+              <option>Evening (6:00 – 7:00 PM)</option>
+              <option>Any time works</option>
+            </select>
+          </label>
+          <p class="form-fine">Anything you'd like us to add anything else. Your details stay private and are used only to arrange your consultation.</p>
+          <button type="submit" class="btn btn-teal btn-block">Request my consultation</button>
+        </form>
+        <div class="alt-actions">
+          <a class="btn btn-outline btn-half" href="https://wa.me/919884000171" target="_blank" rel="noopener">💬 WhatsApp us</a>
+          <a class="btn btn-outline btn-half" href="tel:+919884000171">📞 Call now</a>
+        </div>
+      </div>
+
+      <!-- Thank You / Success Animated State -->
+      <div class="form-success-state" id="formSuccessState" hidden>
+        <div class="success-icon-wrapper">
+          <div class="success-ripple"></div>
+          <svg class="checkmark-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+            <circle class="checkmark-circle" cx="26" cy="26" r="23" fill="none"/>
+            <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+          </svg>
+        </div>
+        <h3 class="success-title">Thank You, <span id="successName">Patient</span>!</h3>
+        <p class="success-sub">Your consultation request has been received</p>
+        
+        <div class="success-details-card">
+          <div class="success-detail-item">
+            <span class="detail-icon">📞</span>
+            <div>
+              <span class="detail-label">Phone Number</span>
+              <strong id="successPhone">+91 XXXXX XXXXX</strong>
+            </div>
+          </div>
+          <div class="success-detail-item">
+            <span class="detail-icon">🩺</span>
+            <div>
+              <span class="detail-label">Condition</span>
+              <strong id="successCondition">Selected condition</strong>
+            </div>
+          </div>
+          <div class="success-detail-item" id="successTimeWrapper">
+            <span class="detail-icon">⏰</span>
+            <div>
+              <span class="detail-label">Preferred Time</span>
+              <strong id="successTime">Time preference</strong>
+            </div>
+          </div>
+        </div>
+
+        <p class="success-note">Dr. Preethi's team will call you shortly to confirm your slot and clinic location.</p>
+
+        <div class="success-actions">
+          <a class="btn btn-teal btn-block" href="https://wa.me/919884000171" target="_blank" rel="noopener">💬 Chat on WhatsApp</a>
+          <button type="button" class="btn btn-outline btn-block" id="btnResetForm">Book another consultation</button>
+        </div>
       </div>
     </div>
   </div>
