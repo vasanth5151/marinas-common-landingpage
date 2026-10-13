@@ -92,24 +92,6 @@ if (form) {
     btn.textContent = 'Sending...';
 
     const showSuccess = () => {
-      // Set details in Thank You view
-      const successName = document.getElementById('successName');
-      const successPhone = document.getElementById('successPhone');
-      const successCondition = document.getElementById('successCondition');
-      const successTime = document.getElementById('successTime');
-      const successTimeWrapper = document.getElementById('successTimeWrapper');
-
-      if (successName) successName.textContent = name;
-      if (successPhone) successPhone.textContent = phone;
-      if (successCondition) successCondition.textContent = condition;
-
-      if (time && time !== 'Choose a preference') {
-        if (successTime) successTime.textContent = time;
-        if (successTimeWrapper) successTimeWrapper.style.display = 'flex';
-      } else {
-        if (successTimeWrapper) successTimeWrapper.style.display = 'none';
-      }
-
       const formContainer = document.getElementById('bookingFormContainer');
       const successState = document.getElementById('formSuccessState');
 

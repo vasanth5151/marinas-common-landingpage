@@ -285,10 +285,26 @@ h1 em,h2 em{font-style:italic;color:var(--teal)}
   pointer-events: none;
 }
 
+/* Centered Thank You Success State */
 .form-success-state {
+  width: 100%;
+  min-height: 320px;
+  padding: 36px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  padding: 8px 0 4px;
+  box-sizing: border-box;
   animation: successFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.form-success-state[hidden] {
+  display: none !important;
+}
+
+.form-success-state .success-icon-wrapper {
+  margin: 0 auto 20px;
 }
 
 @keyframes successFadeIn {
@@ -383,74 +399,34 @@ h1 em,h2 em{font-style:italic;color:var(--teal)}
 }
 
 .success-title {
-  font-size: 24px;
+  font-size: 25px;
   color: var(--deep);
-  margin-bottom: 4px;
-}
-.success-title span {
-  color: var(--teal);
+  margin: 0 0 8px;
+  text-align: center;
 }
 
 .success-sub {
-  font-size: 14px;
+  font-size: 15px;
   color: var(--teal);
   font-weight: 600;
-  margin-bottom: 20px;
-}
-
-.success-details-card {
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  padding: 16px 18px;
-  display: grid;
-  gap: 12px;
-  margin-bottom: 18px;
-  text-align: left;
-}
-
-.success-detail-item {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  font-size: 13.5px;
-}
-
-.detail-icon {
-  width: 34px;
-  height: 34px;
-  border-radius: 10px;
-  background: var(--mint);
-  display: grid;
-  place-items: center;
-  font-size: 16px;
-  flex: none;
-}
-
-.detail-label {
-  display: block;
-  font-size: 11px;
-  color: var(--ink-soft);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-weight: 600;
-}
-
-.success-detail-item strong {
-  color: var(--deep);
-  font-weight: 600;
+  margin: 0 0 14px;
+  text-align: center;
+  line-height: 1.5;
 }
 
 .success-note {
-  font-size: 12.5px;
+  font-size: 13.5px;
   color: var(--ink-soft);
-  margin-bottom: 20px;
+  margin: 0 0 24px;
   line-height: 1.5;
+  text-align: center;
+  max-width: 380px;
 }
 
 .success-actions {
   display: grid;
-  gap: 10px;
+  gap: 12px;
+  width: 100%;
 }
 
 @media(max-width:860px){.booking-grid{grid-template-columns:1fr}}
